@@ -278,7 +278,7 @@ h1, h2, h3, h4 {
     background-color: var(--bg-main); /* Fallback */
     background-image: url('hero_img.png');
     background-size: cover;
-    background-position: center;
+    background-position: center top; /* Align to top to show face */
     background-repeat: no-repeat;
     position: relative; /* Needed for pseudo-element positioning */
     z-index: 0; /* Ensure content is above overlay */
