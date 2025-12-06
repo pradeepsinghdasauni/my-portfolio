@@ -277,7 +277,7 @@ h1, h2, h3, h4 {
     padding-top: var(--header-height);
     background-color: var(--bg-main); /* Fallback */
     background-image: url('hero_img.png');
-    background-size: cover;
+    background-size: contain; /* Changed from 'cover' to 'contain' */
     background-position: center top; /* Align to top to show face */
     background-repeat: no-repeat;
     position: relative; /* Needed for pseudo-element positioning */
