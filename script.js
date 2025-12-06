@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
             // Toggle body scroll
             if (nav.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
@@ -126,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
+                menuToggle.classList.remove('active');
                 document.body.style.overflow = ''; // Restore scroll
             });
         });
