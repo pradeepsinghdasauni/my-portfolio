@@ -178,4 +178,46 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    /* =========================================
+       5. Creative Features: Scroll Progress & Custom Cursor
+       ========================================= */
+    
+    // Scroll Progress Bar
+    const scrollProgress = document.getElementById('scroll-progress');
+    
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        
+        if (scrollProgress) {
+            scrollProgress.style.width = scrollPercentage + '%';
+        }
+    });
+
+    // Custom Cursor
+    const customCursor = document.getElementById('custom-cursor');
+    
+    // Check if device supports hover (basically if it's not touch)
+    if (window.matchMedia("(hover: hover)").matches) {
+        document.addEventListener('mousemove', (e) => {
+            if (customCursor) {
+                customCursor.style.left = e.clientX + 'px';
+                customCursor.style.top = e.clientY + 'px';
+            }
+        });
+
+        // Add hover effects for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .cert-card, .skill-tag');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (customCursor) customCursor.classList.add('hover-active');
+            });
+            el.addEventListener('mouseleave', () => {
+                if (customCursor) customCursor.classList.remove('hover-active');
+            });
+        });
+    }
 });
