@@ -440,8 +440,7 @@ h1, h2, h3, h4 {
 
 /* Certifications */
 .certifications-section {
-    background-color: var(--bg-main); /* Match Skills section? Or Alt? Let's use Alt for separation from Skills */
-    background-color: var(--bg-alt); /* Override from previous thought: Skills is Main, Certs is Alt, Work is Alt... wait. Experience Alt, Skills Main, Certs Alt, Work Main? Let's try Alternating. Experience(Alt), Skills(Main), Certs(Alt), Work(Main), Contact(Main - wait Contact is Main?). Let's check Work. Work(Portfolio) is Alt. Contact is Main. Okay. */
+    background-color: var(--bg-main);
 }
 
 .certs-grid {
@@ -497,7 +496,7 @@ body.light-mode .cert-card {
 }
 
 /* Portfolio Section */
-.portfolio-section { background-color: var(--bg-main); /* Changed from Alt to Main to alternate with Certs? Certs is Alt. */ }
+.portfolio-section { background-color: var(--bg-alt); }
 
 .projects-grid {
     display: grid;
@@ -562,7 +561,7 @@ body.light-mode .cert-card {
 }
 
 /* Contact Section (No Form) */
-.contact-section { background-color: var(--bg-alt); /* Changed from Main to Alt */ }
+.contact-section { background-color: var(--bg-alt); }
 
 .contact-card {
     background: rgba(255, 255, 255, 0.03); /* Ultra subtle for glassmorphism base */
