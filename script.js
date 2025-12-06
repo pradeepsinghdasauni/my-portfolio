@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     /* =========================================
-       0. Theme Toggle Logic
+       0. Theme Toggle Logic (Dark Default)
        ========================================= */
     const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
@@ -10,28 +10,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
     const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
 
-    // Check Local Storage
+    // Check Local Storage (Default is Dark, so we check for Light)
     const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'dark') {
-        body.classList.add('dark-mode');
+    
+    if (currentTheme === 'light') {
+        body.classList.add('light-mode');
         if (themeToggleBtn) {
-            themeToggleBtn.innerHTML = sunIcon;
+            themeToggleBtn.innerHTML = moonIcon; // Show Moon to switch back to Dark
+            themeToggleBtn.setAttribute('aria-label', 'Switch to Dark Mode');
+        }
+    } else {
+        // Default Dark
+        if (themeToggleBtn) {
+            themeToggleBtn.innerHTML = sunIcon; // Show Sun to switch to Light
             themeToggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
         }
     }
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+            body.classList.toggle('light-mode');
             
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                themeToggleBtn.innerHTML = sunIcon;
-                themeToggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
-            } else {
+            if (body.classList.contains('light-mode')) {
                 localStorage.setItem('theme', 'light');
                 themeToggleBtn.innerHTML = moonIcon;
                 themeToggleBtn.setAttribute('aria-label', 'Switch to Dark Mode');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                themeToggleBtn.innerHTML = sunIcon;
+                themeToggleBtn.setAttribute('aria-label', 'Switch to Light Mode');
             }
         });
     }
@@ -42,39 +49,43 @@ document.addEventListener('DOMContentLoaded', () => {
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
     }
-    // Optional: window.scrollTo(0, 0); // Can be annoying on refresh during dev
 
     /* =========================================
-       2. Modal Logic & Dummy Data (Crucial)
+       2. Modal Logic & Data
        ========================================= */
     
-    // Dummy Data for Case Studies
     const caseStudies = {
         1: {
-            title: "E-Commerce Fashion Scale-Up",
-            problem: "This fashion brand was struggling with a high CPA ($45) and stagnant sales despite increasing their ad budget. Their existing campaigns were too broad and lacked audience segmentation.",
-            solution: "We restructured the account to focus on high-margin product categories using Performance Max (PMax) campaigns with specific audience signals. We also implemented dynamic remarketing to capture cart abandoners.",
-            results: "<span class='results-text'>+400% ROAS</span> within 3 months. CPA dropped to <span class='results-text'>$22</span>. Monthly revenue grew by <span class='results-text'>150%</span>."
+            title: "E-Commerce Scale-Up",
+            subtitle: "Fashion & Retail",
+            challenge: "A boutique fashion brand was struggling to scale spend profitably. Their CPA was high ($45) and sales volume was plateauing despite budget increases.",
+            strategy: "Restructured the account to separate high-margin SKUs into dedicated Performance Max campaigns. Implemented dynamic remarketing and utilized customer match lists to exclude past purchasers from top-of-funnel ads.",
+            results: "Achieved a <span class='results-text'>400% ROAS</span> within 90 days. Reduced CPA to <span class='results-text'>$22</span> while scaling monthly revenue by <span class='results-text'>150%</span>."
         },
         2: {
-            title: "SaaS Lead Generation",
-            problem: "A B2B software company was generating plenty of clicks but very few qualified leads. Their Cost Per Lead (CPL) was unsustainable at over $150.",
-            solution: "We shifted the strategy from broad keywords to high-intent 'solution' and 'competitor' terms. We also optimized the landing page copy to address specific pain points and added a pre-qualification step in the lead form.",
-            results: "Lead quality increased significantly. CPL decreased by <span class='results-text'>-30%</span>. The sales team reported a <span class='results-text'>2x higher</span> close rate."
+            title: "SaaS Lead Gen",
+            subtitle: "B2B Technology",
+            challenge: "A B2B SaaS company was generating high traffic but low-quality leads. The sales team was overwhelmed with unqualified prospects, driving up the Cost Per Qualified Lead.",
+            strategy: "Shifted keyword strategy to focus on high-intent 'competitor' and 'solution' terms. Implemented offline conversion tracking (OCT) to optimize for 'Sales Qualified Leads' rather than just form fills.",
+            results: "Lead volume remained steady, but lead quality improved drastically. Cost Per Qualified Lead dropped by <span class='results-text'>30%</span>, and the sales close rate <span class='results-text'>doubled</span>."
         },
         3: {
-            title: "Local Service Dominance",
-            problem: "A multi-location dental clinic was losing market share to competitors. They had low visibility in local search results and were missing out on phone calls.",
-            solution: "We launched hyper-local Search campaigns targeting 'near me' keywords and optimized their Google Business Profile. We also utilized call-only ads during business hours.",
-            results: "Phone calls increased by <span class='results-text'>+250%</span> in the first month. They achieved the <span class='results-text'>#1 ad position</span> for their top 5 service keywords."
+            title: "Local Dominance",
+            subtitle: "Healthcare",
+            challenge: "A multi-location dental practice was losing market share to aggressive local competitors. They had poor visibility in the 'Local Pack' and low call volumes.",
+            strategy: "Launched hyper-local Search campaigns targeting 'near me' intent. Heavily optimized Google Business Profiles and ran Call-Only ads during peak business hours.",
+            results: "Phone inquiries increased by <span class='results-text'>250%</span> in the first month. Secured the <span class='results-text'>#1 ad position</span> for core service keywords in 3 out of 4 locations."
         }
     };
 
     const modal = document.getElementById('project-modal');
     const modalTitle = document.getElementById('modal-title');
-    const modalProblem = document.getElementById('modal-problem');
-    const modalSolution = document.getElementById('modal-solution');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    
+    const modalChallenge = document.getElementById('modal-challenge');
+    const modalStrategy = document.getElementById('modal-strategy');
     const modalResults = document.getElementById('modal-results');
+    
     const closeBtn = document.querySelector('.modal-close');
     const overlay = document.querySelector('.modal-overlay');
 
@@ -84,13 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!data) return;
 
         modalTitle.textContent = data.title;
-        modalProblem.textContent = data.problem;
-        modalSolution.textContent = data.solution;
-        modalResults.innerHTML = data.results; // Changed to innerHTML to render spans
+        if (modalSubtitle) modalSubtitle.textContent = data.subtitle;
+        
+        if (modalChallenge) modalChallenge.textContent = data.challenge;
+        if (modalStrategy) modalStrategy.textContent = data.strategy;
+        if (modalResults) modalResults.innerHTML = data.results;
 
         modal.classList.add('is-visible');
         modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
     };
 
     // Function to close modal
@@ -102,17 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners for Project Cards
     document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
+            // Check if the click came from the button, or just the card
             const id = card.getAttribute('data-id');
             openModal(id);
         });
     });
 
-    // Event Listeners for Closing
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (overlay) overlay.addEventListener('click', closeModal);
     
-    // Close on Escape Key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
             closeModal();
@@ -134,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         root: null,
-        threshold: 0.15
+        threshold: 0.1
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
@@ -145,13 +157,12 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================= */
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav');
-    const navLinks = document.querySelectorAll('.nav-list a'); // Select all nav links
+    const navLinks = document.querySelectorAll('.nav-list a');
 
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
             menuToggle.classList.toggle('active');
-            // Toggle body scroll
             if (nav.classList.contains('active')) {
                 document.body.style.overflow = 'hidden';
             } else {
@@ -159,12 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu when a nav link is clicked (for single-page navigation)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
                 menuToggle.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scroll
+                document.body.style.overflow = '';
             });
         });
     }
