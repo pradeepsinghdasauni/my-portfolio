@@ -291,7 +291,22 @@ h1, h2, h3, h4 {
     margin: 0 auto 40px;
 }
 
-.hero-cta { display: flex; gap: 20px; justify-content: center; }
+.hero-cta { display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; }
+
+.hero-image {
+    max-width: 400px; /* Adjust as needed */
+    margin: 40px auto 0; /* Space from buttons, center image */
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
 /* Experience Timeline */
 .experience-section {
