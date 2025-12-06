@@ -1,99 +1,133 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle Logic
-    const themeToggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Apply initial theme
-    if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    
+    /* =========================================
+       0. Force Scroll to Top
+       ========================================= */
+    if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
     }
+    window.scrollTo(0, 0);
 
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
+    /* =========================================
+       1. Modal Logic & Dummy Data (Crucial)
+       ========================================= */
+    
+    // Dummy Data for Case Studies
+    const caseStudies = {
+        1: {
+            title: "E-Commerce Fashion Scale-Up",
+            problem: "This fashion brand was struggling with a high CPA ($45) and stagnant sales despite increasing their ad budget. Their existing campaigns were too broad and lacked audience segmentation.",
+            solution: "We restructured the account to focus on high-margin product categories using Performance Max (PMax) campaigns with specific audience signals. We also implemented dynamic remarketing to capture cart abandoners.",
+            results: "<span class='results-text'>+400% ROAS</span> within 3 months. CPA dropped to <span class='results-text'>$22</span>. Monthly revenue grew by <span class='results-text'>150%</span>."
+        },
+        2: {
+            title: "SaaS Lead Generation",
+            problem: "A B2B software company was generating plenty of clicks but very few qualified leads. Their Cost Per Lead (CPL) was unsustainable at over $150.",
+            solution: "We shifted the strategy from broad keywords to high-intent 'solution' and 'competitor' terms. We also optimized the landing page copy to address specific pain points and added a pre-qualification step in the lead form.",
+            results: "Lead quality increased significantly. CPL decreased by <span class='results-text'>-30%</span>. The sales team reported a <span class='results-text'>2x higher</span> close rate."
+        },
+        3: {
+            title: "Local Service Dominance",
+            problem: "A multi-location dental clinic was losing market share to competitors. They had low visibility in local search results and were missing out on phone calls.",
+            solution: "We launched hyper-local Search campaigns targeting 'near me' keywords and optimized their Google Business Profile. We also utilized call-only ads during business hours.",
+            results: "Phone calls increased by <span class='results-text'>+250%</span> in the first month. They achieved the <span class='results-text'>#1 ad position</span> for their top 5 service keywords."
+        }
+    };
+
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalProblem = document.getElementById('modal-problem');
+    const modalSolution = document.getElementById('modal-solution');
+    const modalResults = document.getElementById('modal-results');
+    const closeBtn = document.querySelector('.modal-close');
+    const overlay = document.querySelector('.modal-overlay');
+
+    // Function to open modal
+    const openModal = (id) => {
+        const data = caseStudies[id];
+        if (!data) return;
+
+        modalTitle.textContent = data.title;
+        modalProblem.textContent = data.problem;
+        modalSolution.textContent = data.solution;
+        modalResults.innerHTML = data.results; // Changed to innerHTML to render spans
+
+        modal.classList.add('is-visible');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    };
+
+    // Function to close modal
+    const closeModal = () => {
+        modal.classList.remove('is-visible');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    };
+
+    // Event Listeners for Project Cards
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.getAttribute('data-id');
+            openModal(id);
+        });
+    });
+
+    // Event Listeners for Closing
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', closeModal);
+    
+    // Close on Escape Key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
+            closeModal();
+        }
+    });
+
+
+    /* =========================================
+       2. Scroll Reveal Animation
+       ========================================= */
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
             }
         });
-    }
+    }, {
+        root: null,
+        threshold: 0.15
+    });
 
-    // Mobile Menu Toggle
+    revealElements.forEach(el => revealObserver.observe(el));
+
+
+    /* =========================================
+       3. Mobile Menu Toggle
+       ========================================= */
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav');
-    const navLinks = document.querySelectorAll('.nav-list a');
+    const navLinks = document.querySelectorAll('.nav-list a'); // Select all nav links
 
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
-            
-            // Animate hamburger icon
-            const spans = menuToggle.querySelectorAll('span');
+            // Toggle body scroll
             if (nav.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                document.body.style.overflow = 'hidden';
             } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                document.body.style.overflow = '';
             }
         });
 
-        // Close menu when a link is clicked
+        // Close menu when a nav link is clicked (for single-page navigation)
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
-                // Reset hamburger icon
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                document.body.style.overflow = ''; // Restore scroll
             });
-        });
-    }
-
-    // Smooth Scroll for Anchor Links (Fallback for older browsers if CSS scroll-behavior fails)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                // Offset for fixed header
-                const headerOffset = 80; 
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-            
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
-
-    // Contact Form Handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            console.log('Form submitted:', data);
-            
-            // Here you would typically send the data to a backend
-            alert('Thanks for reaching out! This is a demo form, so no email was sent.');
-            contactForm.reset();
         });
     }
 });

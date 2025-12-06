@@ -3,122 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Pradeep Singh Dasauni - Google Ads Specialist</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">Portfolio.</a>
+            <a href="#hero" class="logo">Pradeep Singh Dasauni</a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </button>
-            <button class="menu-toggle" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="header-actions">
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="hero">
+        <!-- Hero Section -->
+        <section id="hero" class="section hero">
             <div class="container">
-                <h1 class="hero-title">Hi, I'm <span class="highlight">Pradeep</span>.</h1>
-                <p class="hero-subtitle">A Creative Developer building modern web experiences.</p>
-                <a href="#projects" class="btn primary">View My Work</a>
+                <h1 class="hero-title reveal">Scaling Revenue through <br><span class="highlight">Data-Driven Google Ads</span></h1>
+                <p class="hero-subtitle reveal">Certified Google Ads Specialist transforming ad spend into measurable revenue.</p>
+                <div class="hero-cta reveal">
+                    <a href="#portfolio" class="btn primary">View My Work</a>
+                    <a href="#contact" class="btn secondary">Get a Free Audit</a>
+                </div>
             </div>
         </section>
 
-        <section id="about" class="section about">
+        <!-- About Section -->
+        <section id="about" class="section about-section">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
+                <div class="about-content reveal">
                     <div class="about-image">
-                        <img src="pradeep.JPG" alt="Pradeep">
+                        <img src="pradeep.JPG" alt="Pradeep Singh Dasauni" loading="lazy">
                     </div>
                     <div class="about-text">
-                        <p>I am a passionate developer with a keen eye for design. I specialize in building responsive, user-friendly websites and applications. I love solving complex problems and turning ideas into reality through code.</p>
-                        <p>When I'm not coding, you can find me exploring new technologies, contributing to open source, or enjoying a good cup of coffee.</p>
+                        <h2 class="section-title" style="text-align: left;">About Me</h2>
+                        <p>I'm Pradeep Singh Dasauni, a data-driven Google Ads Specialist with over 5 years of experience managing six-figure ad budgets. I help businesses stop wasting money on inefficient campaigns and start seeing real, measurable growth.</p>
+                        <p>My approach is simple: rigorous testing, granular data analysis, and continuous optimization. I don't just look at clicks; I look at your bottom line.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section projects">
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
             <div class="container">
-                <h2 class="section-title">My Projects</h2>
-                <div class="projects-grid">
-                    <!-- Project Card 1 -->
-                    <article class="project-card">
+                <h2 class="section-title reveal">My Services</h2>
+                <p class="section-subtitle reveal">Comprehensive PPC solutions tailored to your business goals.</p>
+                
+                <div class="services-grid reveal">
+                    <div class="service-card">
+                        <div class="service-icon">🔍</div>
+                        <h3>PPC Audit & Strategy</h3>
+                        <p>In-depth analysis of your current accounts to identify wasted spend and growth opportunities.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>Search Advertising</h3>
+                        <p>High-intent campaigns on Google & Bing to capture users actively looking for your products.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛍️</div>
+                        <h3>Google Shopping</h3>
+                        <p>Optimized product feeds and campaigns to dominate the visual search landscape.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Data & Analytics</h3>
+                        <p>GA4 setup, GTM implementation, and custom reporting dashboards for clear ROI tracking.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>Social Media Ads</h3>
+                        <p>Targeted campaigns on Meta (Facebook/Instagram) and LinkedIn to build brand awareness.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🚀</div>
+                        <h3>Conversion Optimization</h3>
+                        <p>Landing page testing and CRO strategies to turn more clicks into paying customers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section portfolio-section">
+            <div class="container">
+                <h2 class="section-title reveal">Selected Work</h2>
+                <p class="section-subtitle reveal">A collection of recent campaigns delivering exceptional results.</p>
+                
+                <div class="projects-grid reveal" id="portfolio-grid">
+                    <article class="project-card" data-id="1">
                         <div class="project-image">
-                            <div class="placeholder-img"></div>
+                            <!-- Placeholder gradient using new palette -->
+                            <div class="placeholder-img" style="background: linear-gradient(135deg, #1e293b 0%, #06b6d4 100%);"></div>
                         </div>
                         <div class="project-info">
-                            <h3>E-Commerce Dashboard</h3>
-                            <p>A comprehensive dashboard for managing online stores with real-time analytics.</p>
-                            <div class="tags">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                            <a href="#" class="link-arrow">View Project &rarr;</a>
+                            <h3>E-Commerce Scale-Up</h3>
+                            <button class="btn link-arrow">View Case Study &rarr;</button>
                         </div>
                     </article>
 
-                    <!-- Project Card 2 -->
-                    <article class="project-card">
+                    <article class="project-card" data-id="2">
                         <div class="project-image">
-                            <div class="placeholder-img"></div>
+                            <div class="placeholder-img" style="background: linear-gradient(135deg, #1e293b 0%, #8b5cf6 100%);"></div>
                         </div>
                         <div class="project-info">
-                            <h3>Task Management App</h3>
-                            <p>A productivity tool to help teams organize tasks and collaborate effectively.</p>
-                            <div class="tags">
-                                <span>Vue.js</span>
-                                <span>Firebase</span>
-                                <span>Tailwind</span>
-                            </div>
-                            <a href="#" class="link-arrow">View Project &rarr;</a>
+                            <h3>SaaS Lead Gen</h3>
+                            <button class="btn link-arrow">View Case Study &rarr;</button>
                         </div>
                     </article>
 
-                    <!-- Project Card 3 -->
-                    <article class="project-card">
+                    <article class="project-card" data-id="3">
                         <div class="project-image">
-                            <div class="placeholder-img"></div>
+                            <div class="placeholder-img" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);"></div>
                         </div>
                         <div class="project-info">
-                            <h3>Portfolio V1</h3>
-                            <p>My previous portfolio site showcasing my early work and progression.</p>
-                            <div class="tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                            </div>
-                            <a href="#" class="link-arrow">View Project &rarr;</a>
+                            <h3>Local Service Ads</h3>
+                            <button class="btn link-arrow">View Case Study &rarr;</button>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section contact">
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="contact-intro">Have a project in mind or just want to say hello? I'd love to hear from you.</p>
-                <form class="contact-form" id="contactForm">
+                <h2 class="section-title reveal">Get In Touch</h2>
+                <p class="section-subtitle reveal">Ready to elevate your ad performance? Let's talk.</p>
+                <form class="contact-form reveal" id="contactForm">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -139,14 +169,39 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Pradeep. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#">GitHub</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Twitter</a>
-            </div>
+            <p>&copy; 2025 Pradeep Singh Dasauni. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Modal Container -->
+    <div id="project-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay" tabindex="-1" data-close></div>
+        <div class="modal-container" role="dialog" aria-modal="true">
+            <button class="modal-close" aria-label="Close Modal" data-close>&times;</button>
+            <div class="modal-content">
+                <h2 id="modal-title" class="modal-title">Project Title</h2>
+                
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h3>The Problem</h3>
+                        <p id="modal-problem">Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>The Solution</h3>
+                        <p id="modal-solution">Lorem ipsum dolor sit amet.</p>
+                    </div>
+
+                    <div class="modal-section highlight-box">
+                        <h3>The Results</h3>
+                        <p id="modal-results" class="results-text">
+                            <!-- Results text injected here -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
