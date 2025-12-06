@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (history.scrollRestoration) {
         history.scrollRestoration = 'manual';
     }
+    window.scrollTo(0, 0);
 
     /* =========================================
        2. Modal Logic & Data
