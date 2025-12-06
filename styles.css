@@ -419,13 +419,16 @@ h1, h2, h3, h4 {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     padding: 10px 25px;
-    border-radius: 50px;
+    border-radius: 50px; /* Pill shape */
     font-size: 0.95rem;
     color: var(--text-headings);
     font-weight: 500;
     box-shadow: var(--shadow-card);
     transition: var(--transition);
     cursor: default;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .skill-tag:hover {
