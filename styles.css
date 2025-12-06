@@ -528,8 +528,17 @@ body.light-mode .cert-card {
     overflow: hidden;
 }
 
-.placeholder-img { width: 100%; height: 100%; transition: transform 0.5s ease; }
-.project-card:hover .placeholder-img { transform: scale(1.05); }
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
 
 .project-info { padding: 30px; }
 
