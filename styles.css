@@ -273,50 +273,57 @@ h1, h2, h3, h4 {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    text-align: center;
     padding-top: var(--header-height);
-    background-color: var(--bg-main); /* Fallback */
-    background-image: url('hero_img.png');
-    background-size: contain; /* Changed from 'cover' to 'contain' */
-    background-position: center top; /* Align to top to show face */
-    background-repeat: no-repeat;
-    position: relative; /* Needed for pseudo-element positioning */
-    z-index: 0; /* Ensure content is above overlay */
+    background-color: var(--bg-main);
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 450px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
+    order: 1; /* Ensure image is on the left if HTML order differs, but HTML has image first */
+}
+
+.hero-image img {
+    display: block;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-    z-index: 1;
+    height: auto;
 }
 
-.hero > .container {
-    position: relative; /* Ensure content is above the overlay */
-    z-index: 2;
+.hero-content {
+    flex: 1;
+    text-align: left;
+    order: 2;
 }
 
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 24px;
     letter-spacing: -1px;
-    color: #ffffff; /* Ensure white text on dark background */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: var(--text-headings);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: #f8fafc; /* Lighter text for contrast */
-    max-width: 650px;
-    margin: 0 auto 40px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    color: var(--text-body);
+    margin-bottom: 40px;
 }
 
-.hero-cta { display: flex; gap: 20px; justify-content: center; }
+.hero-cta { 
+    display: flex; 
+    gap: 20px; 
+    justify-content: flex-start; 
+}
 
 /* Experience Timeline */
 .experience-section {
