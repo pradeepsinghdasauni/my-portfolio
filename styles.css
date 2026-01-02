@@ -842,3 +842,19 @@ body {
         scroll-snap-align: center;
     }
 }
+
+/* Hero Description Styles */
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-body);
+    max-width: 700px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+}
