@@ -133,27 +133,143 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================================
-       3. Scroll Reveal Animation
+       3. Typing Animation for Hero Title
+       ========================================= */
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        const originalText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.style.opacity = '1';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < originalText.length) {
+                heroTitle.textContent = originalText.substring(0, i + 1) + '<span class="typing-cursor">|</span>';
+                heroTitle.innerHTML = originalText.substring(0, i + 1) + '<span class="typing-cursor">|</span>';
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // Remove cursor after typing is complete
+                heroTitle.textContent = originalText;
+            }
+        };
+        
+        setTimeout(typeWriter, 500);
+    }
+
+    /* =========================================
+       4. Enhanced Scroll Reveal Animation with Stagger
        ========================================= */
     const revealElements = document.querySelectorAll('.reveal');
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
+                setTimeout(() => {
+                    entry.target.classList.add('active');
+                }, index * 100); // Stagger effect
                 observer.unobserve(entry.target);
             }
         });
     }, {
         root: null,
-        threshold: 0.1
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
+    /* =========================================
+       5. Parallax Effect for Hero Image
+       ========================================= */
+    const heroImage = document.querySelector('.hero-image');
+    if (heroImage) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.3;
+            heroImage.style.transform = `translateY(${rate}px)`;
+        });
+    }
+
 
     /* =========================================
-       4. Mobile Menu Toggle
+       7. Animated Skill Tags on Hover
+       ========================================= */
+    const skillTags = document.querySelectorAll('.skill-tag');
+    skillTags.forEach((tag, index) => {
+        tag.style.animationDelay = `${index * 0.1}s`;
+        tag.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1) translateY(-5px)';
+        });
+        tag.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) translateY(0)';
+        });
+    });
+
+    /* =========================================
+       8. Enhanced Timeline Animation
+       ========================================= */
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }, index * 200);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    timelineItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-30px)';
+        item.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        timelineObserver.observe(item);
+    });
+
+    /* =========================================
+       9. Smooth Header Scroll Effect
+       ========================================= */
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 100) {
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.boxShadow = 'none';
+        }
+        lastScroll = currentScroll;
+    });
+
+    /* =========================================
+       10. Animated Project Cards with 3D Effect
+       ========================================= */
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+    });
+
+
+    /* =========================================
+       11. Mobile Menu Toggle
        ========================================= */
     const menuToggle = document.querySelector('.menu-toggle');
     const nav = document.querySelector('.nav');
@@ -180,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       5. Creative Features: Scroll Progress & Custom Cursor
+       12. Creative Features: Scroll Progress & Custom Cursor
        ========================================= */
     
     // Scroll Progress Bar
@@ -219,5 +335,63 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (customCursor) customCursor.classList.remove('hover-active');
             });
         });
+    }
+
+    /* =========================================
+       13. Floating Happy Emoji on Hire Me Button
+       ========================================= */
+    const hireMeBtn = document.querySelector('.hire-me-btn');
+    const emojis = ['😊', '😄', '😃', '🎉', '✨', '🚀'];
+    
+    if (hireMeBtn) {
+        let emojiTimeout;
+        
+        hireMeBtn.addEventListener('mouseenter', () => {
+            // Clear any existing timeout
+            clearTimeout(emojiTimeout);
+            
+            // Create multiple emojis
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createFloatingEmoji(hireMeBtn, emojis[Math.floor(Math.random() * emojis.length)]);
+                }, i * 200);
+            }
+        });
+        
+        hireMeBtn.addEventListener('mouseleave', () => {
+            clearTimeout(emojiTimeout);
+        });
+    }
+    
+    function createFloatingEmoji(button, emoji) {
+        const emojiElement = document.createElement('span');
+        emojiElement.textContent = emoji;
+        emojiElement.className = 'floating-emoji';
+        
+        const buttonRect = button.getBoundingClientRect();
+        const randomX = (Math.random() - 0.5) * 60;
+        
+        emojiElement.style.position = 'fixed';
+        emojiElement.style.fontSize = '2rem';
+        emojiElement.style.pointerEvents = 'none';
+        emojiElement.style.zIndex = '10000';
+        emojiElement.style.left = buttonRect.left + buttonRect.width / 2 + randomX + 'px';
+        emojiElement.style.top = buttonRect.top + buttonRect.height / 2 + 'px';
+        emojiElement.style.transform = 'translate(-50%, -50%)';
+        emojiElement.style.opacity = '0';
+        
+        document.body.appendChild(emojiElement);
+        
+        // Trigger animation
+        requestAnimationFrame(() => {
+            emojiElement.style.animation = `floatEmoji 1.5s ease-out forwards`;
+        });
+        
+        // Remove element after animation
+        setTimeout(() => {
+            if (emojiElement.parentNode) {
+                emojiElement.remove();
+            }
+        }, 1500);
     }
 });
