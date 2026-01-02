@@ -52,30 +52,30 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
 
     /* =========================================
-       2. Modal Logic & Data
+       2. Modal Logic & Data (UPDATED CASE STUDIES)
        ========================================= */
     
     const caseStudies = {
         1: {
             title: "E-Commerce Scale-Up",
             subtitle: "Fashion & Retail",
-            challenge: "A boutique fashion brand was struggling to scale spend profitably. Their CPA was high ($45) and sales volume was plateauing despite budget increases.",
-            strategy: "Restructured the account to separate high-margin SKUs into dedicated Performance Max campaigns. Implemented dynamic remarketing and utilized customer match lists to exclude past purchasers from top-of-funnel ads.",
+            challenge: "A boutique fashion brand was stagnant with a ROAS ceiling of 2.5x. Despite increasing budget, they couldn't scale profitable revenue and suffered from a high CPA of $45.",
+            strategy: "Restructured the account to leverage Performance Max (PMax) with asset group segmentation based on product margins. Implemented dynamic remarketing and utilized customer match lists to exclude past purchasers from top-of-funnel ads.",
             results: "Achieved a <span class='results-text'>400% ROAS</span> within 90 days. Reduced CPA to <span class='results-text'>$22</span> while scaling monthly revenue by <span class='results-text'>150%</span>."
         },
         2: {
             title: "SaaS Lead Gen",
             subtitle: "B2B Technology",
-            challenge: "A B2B SaaS company was generating high traffic but low-quality leads. The sales team was overwhelmed with unqualified prospects, driving up the Cost Per Qualified Lead.",
-            strategy: "Shifted keyword strategy to focus on high-intent 'competitor' and 'solution' terms. Implemented offline conversion tracking (OCT) to optimize for 'Sales Qualified Leads' rather than just form fills.",
-            results: "Lead volume remained steady, but lead quality improved drastically. Cost Per Qualified Lead dropped by <span class='results-text'>30%</span>, and the sales close rate <span class='results-text'>doubled</span>."
+            challenge: "A B2B SaaS company was receiving high traffic but low-quality leads. The sales team was overwhelmed with unqualified prospects, driving up the actual Cost Per Qualified Lead (CPQL).",
+            strategy: "Shifted from 'Maximize Clicks' to 'Maximize Conversions' with Target CPA. Crucially, I implemented Offline Conversion Import (OCT) to feed 'Sales Qualified Lead' data back into Google Ads, optimizing for deal quality rather than just volume.",
+            results: "Lead volume stabilized, but quality surged. Cost Per Qualified Lead dropped by <span class='results-text'>30%</span> and the sales close rate <span class='results-text'>doubled</span> in Q3."
         },
         3: {
-            title: "Local Dominance",
-            subtitle: "Healthcare",
-            challenge: "A multi-location dental practice was losing market share to aggressive local competitors. They had poor visibility in the 'Local Pack' and low call volumes.",
-            strategy: "Launched hyper-local Search campaigns targeting 'near me' intent. Heavily optimized Google Business Profiles and ran Call-Only ads during peak business hours.",
-            results: "Phone inquiries increased by <span class='results-text'>250%</span> in the first month. Secured the <span class='results-text'>#1 ad position</span> for core service keywords in 3 out of 4 locations."
+            title: "Technical Account Rescue",
+            subtitle: "Policy & Tracking",
+            challenge: "A high-value advertiser faced imminent suspension due to 'Circumventing Systems' policy flags and suffered from broken GTM tracking that underreported conversions by 40%.",
+            strategy: "Conducted a forensic audit of the site code and account history. Debugged the GTM container to fire distinct conversion events and drafted a precise, technical appeal to Google Policy teams citing specific rectifications.",
+            results: "Account reinstated within <span class='results-text'>48 hours</span>. Data discrepancy reduced to <span class='results-text'>&lt;5%</span>, restoring client confidence and accurate attribution."
         }
     };
 
